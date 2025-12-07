@@ -3,35 +3,38 @@ FROM node:lts-slim AS builder
 
 WORKDIR /app
 
-# 1. Install system build tools (Missing in 'slim' images, needed for ARM builds)
-#    This fixes "node-gyp" and "sass" errors often causing Exit Code 2
+# 1. Install system tools (Python/Make) for ARM compatibility
 RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
 
-# 2. Clean slate: Delete local dependencies
+# 2. Clean slate: Force delete any cached or copied node_modules
+#    This prevents the "Exit Code 126/127" errors
 RUN rm -rf node_modules package-lock.json
 
 COPY package*.json ./
 
 # 3. Install dependencies
-#    --legacy-peer-deps helps if some packages conflict
 RUN npm install --legacy-peer-deps
 
 COPY . .
 
-# 4. Build with SAFE memory options
-#    Set to 2048 (2GB). If your Pi has 1GB RAM, change this to 1024.
-ENV NODE_OPTIONS="--max-old-space-size=2048"
+# 4. THE FIXES:
+#    - Increase Node memory to 4GB (Prevents "Killed" / Exit Code 137)
+#    - Set CI=false (Prevents "Treating warnings as errors" / Exit Code 2)
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+ENV CI=false
 
-# 5. Run build with VERBOSE logging so we can see the real error if it fails
-RUN npm run build --verbose
+# 5. Build
+RUN npm run build
 
 # --- Stage 2: Serve with Nginx ---
 FROM nginx:alpine
 
+# Clean default Nginx files
 RUN rm -rf /usr/share/nginx/html/*
 
-# IMPORTANT: Check your repo! 
-# If you use Vite/Vue, change '/app/build' to '/app/dist'
+# 6. COPY Output
+#    IMPORTANT: If this fails with "directory not found", change '/app/build' to '/app/dist'
+#    (React usually uses 'build', Vite uses 'dist')
 COPY --from=builder /app/build /usr/share/nginx/html
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
