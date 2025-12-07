@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-            .NET developer with 8 years of experience building scalable backend systems and cloud-first applications.
+            Software developer with 8 years of experience building scalable backend systems and cloud-first applications.
           </p>
 
           {/* Tech Stack */}
