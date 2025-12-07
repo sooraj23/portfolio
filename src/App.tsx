@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Sidebar from './components/Sidebar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -9,6 +10,7 @@ import Projects from './components/Projects';
 import Education from './components/Education';
 import Languages from './components/Languages';
 import Footer from './components/Footer';
+import { sectionVariants } from './animations';
 import Bet365 from './pages/Bet365';
 import Kindertons from './pages/Kindertons';
 import Gadgeon from './pages/Gadgeon';
@@ -38,28 +40,70 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white">
       <Sidebar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <div className="lg:ml-64">
-        <Hero />
-        <section id="about" className="py-20 px-8 bg-gray-100/50 dark:bg-gray-900/30">
+        <motion.div
+          whileInView="visible"
+          variants={sectionVariants}
+          initial="hidden"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <Hero />
+        </motion.div>
+        <motion.section
+          id="about"
+          className="py-20 px-8 bg-gray-100/50 dark:bg-gray-900/30"
+          whileInView="visible"
+          variants={sectionVariants}
+          initial="hidden"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <div className="max-w-6xl mx-auto">
             <About />
           </div>
-        </section>
-        <section id="work" className="py-20 px-8">
+        </motion.section>
+        <motion.section
+          id="work"
+          className="py-20 px-8"
+          whileInView="visible"
+          variants={sectionVariants}
+          initial="hidden"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <div className="max-w-6xl mx-auto">
             <Experience />
           </div>
-        </section>
-        <section id="projects" className="py-20 px-8 bg-gray-100/30 dark:bg-gray-900/50">
+        </motion.section>
+        <motion.section
+          id="projects"
+          className="py-20 px-8 bg-gray-100/30 dark:bg-gray-900/50"
+          whileInView="visible"
+          variants={sectionVariants}
+          initial="hidden"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <div className="max-w-6xl mx-auto">
             <Projects />
           </div>
-        </section>
-        <section id="experience" className="py-20 px-8 bg-gray-100/50 dark:bg-gray-900/30">
+        </motion.section>
+        <motion.section
+          id="experience"
+          className="py-20 px-8 bg-gray-100/50 dark:bg-gray-900/30"
+          whileInView="visible"
+          variants={sectionVariants}
+          initial="hidden"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <div className="max-w-6xl mx-auto">
             <Skills />
           </div>
-        </section>
-        <section id="contact" className="py-20 px-8 bg-gray-100/30 dark:bg-gray-900/50">
+        </motion.section>
+        <motion.section
+          id="contact"
+          className="py-20 px-8 bg-gray-100/30 dark:bg-gray-900/50"
+          whileInView="visible"
+          variants={sectionVariants}
+          initial="hidden"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <div className="max-w-6xl mx-auto">
             <Education />
             <div className="mt-16">
@@ -69,7 +113,7 @@ const App: React.FC = () => {
               <Activities />
             </div> */}
           </div>
-        </section>
+        </motion.section>
         <Footer />
       </div>
     </div>
