@@ -30,18 +30,18 @@ const Projects: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-400/10 to-pink-400/10 dark:from-purple-400/5 dark:to-pink-400/5"></div>
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white flex items-center justify-center">
-            <span className="mr-3 text-5xl">🚀</span>Projects
+    <section className="section-bg-purple-pink">
+      <div className="overlay-purple-pink"></div>
+      <div className="section-container">
+        <div className="section-header">
+          <h2 className="section-title">
+            <span className="section-title-emoji">🚀</span>Projects
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
+          <div className="underline-purple-pink"></div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 border-l-4 border-purple-500">
+            <div key={index} className="card-white border-l-4 border-purple-500">
               <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100 flex items-center">
                 <span className="mr-2">🚀</span>{project.name}
               </h3>

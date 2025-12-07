@@ -26,18 +26,18 @@ const Education: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-br from-yellow-50 via-white to-orange-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 to-orange-400/10 dark:from-yellow-400/5 dark:to-orange-400/5"></div>
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white flex items-center justify-center">
-            <span className="mr-3 text-5xl">🎓</span>Education & Background
+    <section className="section-bg-yellow-orange">
+      <div className="overlay-yellow-orange"></div>
+      <div className="section-container">
+        <div className="section-header">
+          <h2 className="section-title">
+            <span className="section-title-emoji">🎓</span>Education & Background
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-yellow-500 to-orange-500 mx-auto rounded-full"></div>
+          <div className="underline-yellow-orange"></div>
         </div>
         <div className="space-y-6 max-w-4xl mx-auto">
           {educationData.map((edu, index) => (
-            <div key={index} className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 border-l-4 border-yellow-500">
+            <div key={index} className="card-white border-l-4 border-yellow-500">
               <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">{edu.degree}</h3>
               <p className="text-gray-600 dark:text-gray-400 mb-1">{edu.institution}</p>
               <p className="text-gray-500 dark:text-gray-500 mb-2">{edu.period}</p>

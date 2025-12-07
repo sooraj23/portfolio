@@ -23,7 +23,7 @@ const Hero: React.FC = () => {
           {/* Top Label */}
           <div className="mb-6">
             <span className="inline-block px-4 py-2 bg-black/15 dark:bg-white/10 backdrop-blur-sm border border-black/30 dark:border-white/20 rounded-full text-sm text-gray-800 dark:text-gray-300 tracking-widest font-medium">
-              MANCHESTER, UK • SENIOR .NET DEVELOPER
+              MANCHESTER, UK • SOFTWARE DEVELOPER
             </span>
           </div>
 
