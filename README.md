@@ -42,32 +42,34 @@ A modern, responsive portfolio website showcasing 8+ years of .NET development e
 
 ```
 portfolio/
-├── public/
-│   └── vite.svg
+├── index.html                # Main HTML entry point
 ├── src/
 │   ├── components/
-│   │   ├── Header.tsx          # Navigation header with contact info
-│   │   ├── About.tsx           # Professional summary with highlights
-│   │   ├── Skills.tsx          # Technical skills showcase
-│   │   ├── Experience.tsx      # Work experience overview
-│   │   ├── Projects.tsx        # Key projects and deliverables
-│   │   ├── Education.tsx       # Academic background
-│   │   ├── Languages.tsx       # Language proficiency
-│   │   ├── Activities.tsx      # Extra-curricular activities
-│   │   └── Footer.tsx          # Site footer with links
+│   │   ├── Sidebar.tsx        # Navigation sidebar
+│   │   ├── Hero.tsx           # Hero section
+│   │   ├── About.tsx          # Professional summary with highlights
+│   │   ├── Skills.tsx         # Technical skills showcase
+│   │   ├── Experience.tsx     # Work experience overview
+│   │   ├── Projects.tsx       # Key projects and deliverables
+│   │   ├── Education.tsx      # Academic background
+│   │   ├── Languages.tsx      # Language proficiency
+│   │   ├── Activities.tsx     # Extra-curricular activities
+│   │   ├── Header.tsx         # Navigation header component (unused)
+│   │   └── Footer.tsx         # Site footer with links
 │   ├── pages/
-│   │   ├── Bet365.tsx          # Detailed Bet365 experience
-│   │   ├── Kindertons.tsx      # Detailed Kindertons experience
-│   │   ├── Gadgeon.tsx         # Detailed Gadgeon experience
-│   │   ├── Eteam.tsx           # Detailed E-Team experience
-│   │   └── Cmots.tsx           # Detailed C-MOTS experience
-│   ├── App.tsx                 # Main application component
+│   │   ├── Bet365.tsx         # Detailed Bet365 experience
+│   │   ├── Kindertons.tsx     # Detailed Kindertons experience
+│   │   ├── Gadgeon.tsx        # Detailed Gadgeon experience
+│   │   ├── Eteam.tsx          # Detailed E-Team experience
+│   │   └── Cmots.tsx          # Detailed C-MOTS experience
+│   ├── App.tsx                # Main application component
 │   ├── main.tsx               # Application entry point
 │   └── index.css              # Global styles and Tailwind imports
-├── package.json               # Project dependencies
-├── tailwind.config.js        # Tailwind CSS configuration
-├── postcss.config.js         # PostCSS configuration
-├── tsconfig.json             # TypeScript configuration
+├── package.json              # Project dependencies
+├── package-lock.json         # NPM lock file
+├── tailwind.config.js       # Tailwind CSS configuration
+├── postcss.config.js        # PostCSS configuration
+├── tsconfig.json            # TypeScript configuration
 ├── tsconfig.node.json       # Node.js TypeScript config
 └── vite.config.ts           # Vite configuration
 ```
