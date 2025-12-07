@@ -42,6 +42,8 @@ A modern, responsive portfolio website showcasing 8+ years of .NET development e
 
 ```
 portfolio/
+├── public/
+│   └── sk.svg               # Favicon icon
 ├── index.html                # Main HTML entry point
 ├── src/
 │   ├── components/
@@ -59,7 +61,7 @@ portfolio/
 │   ├── pages/
 │   │   ├── Bet365.tsx         # Detailed Bet365 experience
 │   │   ├── Kindertons.tsx     # Detailed Kindertons experience
-│   │   ├── Gadgeon.tsx        # Detailed Gadgeon experience
+│   │   ├── Gadgeon.tsx         # Detailed Gadgeon experience
 │   │   ├── Eteam.tsx          # Detailed E-Team experience
 │   │   └── Cmots.tsx          # Detailed C-MOTS experience
 │   ├── App.tsx                # Main application component
@@ -68,7 +70,7 @@ portfolio/
 ├── package.json              # Project dependencies
 ├── package-lock.json         # NPM lock file
 ├── tailwind.config.js       # Tailwind CSS configuration
-├── postcss.config.js        # PostCSS configuration
+├── postcss.config.js         # PostCSS configuration
 ├── tsconfig.json            # TypeScript configuration
 ├── tsconfig.node.json       # Node.js TypeScript config
 └── vite.config.ts           # Vite configuration

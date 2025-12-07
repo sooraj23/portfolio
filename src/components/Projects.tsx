@@ -26,6 +26,24 @@ const Projects: React.FC = () => {
       role: 'CRM and .Net Developer',
       technologies: ['Dynamics 365', 'Power BI', 'ASP.Net Core', 'C#', 'LINQ', 'SQL Server', 'Dataverse', 'Azure Service Bus', 'Azure Functions'],
       description: 'Developed and customized model-driven and canvas apps using Power Apps. Integrated Power Automate to automate workflows and business process.'
+    },
+    {
+      name: 'Physical Asset Verification',
+      role: 'Developer, Designer, Tester',
+      technologies: ['ASP.Net', 'C#', 'JavaScript', 'jQuery', 'LinQ', 'Asp.Net MVC Core', 'SQL-2012', 'CSS', 'Bootstrap'],
+      description: 'Managing Assets, Location and Users of Bank. Developing code as per requirement.'
+    },
+    {
+      name: 'Mutual Fund',
+      role: 'Developer, Designer, Tester',
+      technologies: ['ASP.Net', 'ADO.Net', 'C#', 'JavaScript', 'jQuery', 'Angular Js', 'SQL-2008', 'CSS', 'Bootstrap'],
+      description: 'Provides information on Mutual Fund schemes, maintains current prices, NAV, and Dividend records. Includes portfolio comparison tools with chart returns. Developing code as per requirement.'
+    },
+    {
+      name: 'Portfolio Management',
+      role: 'Developer, Designer',
+      technologies: ['ASP.Net', 'ADO.Net', 'C#', 'JavaScript', 'jQuery', 'SQL-2008', 'CSS', 'Bootstrap'],
+      description: 'Managing portfolio of individual user. Display summery of user activities like buy, sell etc. Developing code as per requirement.'
     }
   ];
 
