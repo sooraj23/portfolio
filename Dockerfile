@@ -1,36 +1,34 @@
 # --- Stage 1: Build the App ---
-# Use a lightweight Node image
-FROM node:18-alpine AS builder
+# Use 'slim' instead of 'alpine' for better Raspberry Pi compatibility
+FROM node:lts-slim AS builder
 
 WORKDIR /app
 
-# Copy package files first to leverage caching
-COPY package*.json ./
-
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the code
+# Copy ALL files (including the bad node_modules)
 COPY . .
 
-# Build the project (output usually goes to /build or /dist)
+# THE FIX: Delete the incompatible node_modules and package-lock
+# This forces the Pi to download fresh, compatible versions
+RUN rm -rf node_modules package-lock.json
+
+# Install dependencies freshly
+RUN npm install
+
+# Build the project
 RUN npm run build
 
 # --- Stage 2: Serve with Nginx ---
 FROM nginx:alpine
 
-# Remove default nginx static assets
+# Clean default Nginx files
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy the build output from Stage 1
-# NOTE: Check if your repo builds to 'build' or 'dist'. 
-# React usually uses 'build', Vite uses 'dist'. 
-# If your build folder is 'dist', change '/app/build' to '/app/dist' below.
+# Copy the build output
+# IMPORTANT: If your build fails later, change '/app/build' to '/app/dist'
 COPY --from=builder /app/build /usr/share/nginx/html
 
-# Copy our custom nginx config
+# Copy nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
-
 CMD ["nginx", "-g", "daemon off;"]
