@@ -79,48 +79,67 @@ const Experience: React.FC = () => {
   ];
 
   return (
-    <section className="py-8 bg-gray-100 dark:bg-gray-800">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold mb-6 text-center text-gray-900 dark:text-gray-100">Work Experience</h2>
+    <section className="py-16 bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-r from-green-400/10 to-blue-400/10 dark:from-green-400/5 dark:to-blue-400/5"></div>
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white flex items-center justify-center">
+            <span className="mr-3 text-5xl">💼</span>Work Experience
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-blue-500 mx-auto rounded-full"></div>
+        </div>
         <div className="space-y-6">
           {jobs.map((job, index) => (
-            <div key={index} className={`bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 border-l-4 border-green-500 relative overflow-hidden ${(job.company === 'Bet365' || job.company === 'Kindertons Accident Management' || job.company === 'Gadgeon Smart Systems Inc (Client – KORE Wireless)' || job.company === 'E-Team (Client - Wipro Ltd, Project – ICICI Bank)' || job.company === 'C-MOTS Internet Technologies') ? 'cursor-pointer hover:bg-black hover:bg-opacity-5 dark:hover:bg-opacity-10' : ''}`}>
-              {(job.company === 'Bet365' || job.company === 'Kindertons Accident Management' || job.company === 'Gadgeon Smart Systems Inc (Client – KORE Wireless)' || job.company === 'E-Team (Client - Wipro Ltd, Project – ICICI Bank)' || job.company === 'C-MOTS Internet Technologies') ? (
-                <Link to={
-                  job.company === 'Bet365' ? '/bet365' :
-                  job.company === 'Kindertons Accident Management' ? '/kindertons' :
-                  job.company === 'Gadgeon Smart Systems Inc (Client – KORE Wireless)' ? '/gadgeon' :
-                  job.company === 'E-Team (Client - Wipro Ltd, Project – ICICI Bank)' ? '/eteam' :
-                  '/cmots'
-                } className="block group">
-                  <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-5 dark:group-hover:bg-opacity-10 transition-opacity duration-300"></div>
-                  <div className="relative z-10">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 flex items-center">
-                      <span className="mr-2">🏢</span>{job.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-400 mb-2">{job.company}, {job.location}</p>
-                    <p className="text-gray-500 dark:text-gray-500 mb-4">{job.period}</p>
-                    <ul className="list-disc list-inside space-y-1">
-                      {job.description.map((point, i) => (
-                        <li key={i} className="text-gray-700 dark:text-gray-300">{point}</li>
+            <div key={index} className="group relative">
+              <div className="bg-white/5 dark:bg-white/5 backdrop-blur-sm dark:backdrop-blur-sm border border-gray-200/30 dark:border-white/10 rounded-2xl p-8 hover:bg-white/10 dark:hover:bg-white/10 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-500/20 dark:hover:shadow-blue-500/10 shadow-lg">
+                {(job.company === 'Bet365' || job.company === 'Kindertons Accident Management' || job.company === 'Gadgeon Smart Systems Inc (Client – KORE Wireless)' || job.company === 'E-Team (Client - Wipro Ltd, Project – ICICI Bank)' || job.company === 'C-MOTS Internet Technologies') ? (
+                  <Link to={
+                    job.company === 'Bet365' ? '/bet365' :
+                    job.company === 'Kindertons Accident Management' ? '/kindertons' :
+                    job.company === 'Gadgeon Smart Systems Inc (Client – KORE Wireless)' ? '/gadgeon' :
+                    job.company === 'E-Team (Client - Wipro Ltd, Project – ICICI Bank)' ? '/eteam' :
+                    '/cmots'
+                  } className="block">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                          {job.title}
+                        </h3>
+                        <p className="text-gray-400 text-lg">{job.company}</p>
+                        <p className="text-gray-500 text-sm mt-1">{job.location} • {job.period}</p>
+                      </div>
+                      <div className="text-gray-700 dark:text-gray-400 group-hover:text-blue-400 transition-colors text-2xl">
+                        →
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      {job.description.slice(0, 2).map((point, i) => (
+                        <p key={i} className="text-gray-300 leading-relaxed">{point}</p>
                       ))}
-                    </ul>
-                  </div>
-                </Link>
-              ) : (
-                <>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 flex items-center">
-                    <span className="mr-2">🏢</span>{job.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-2">{job.company}, {job.location}</p>
-                  <p className="text-gray-500 dark:text-gray-500 mb-4">{job.period}</p>
-                  <ul className="list-disc list-inside space-y-1">
-                    {job.description.map((point, i) => (
-                      <li key={i} className="text-gray-700 dark:text-gray-300">{point}</li>
-                    ))}
-                  </ul>
-                </>
-              )}
+                      <p className="text-black dark:text-blue-400 font-bold mt-4 group-hover:underline">
+                        View full experience →
+                      </p>
+                    </div>
+                  </Link>
+                ) : (
+                  <>
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h3 className="text-2xl font-bold text-black dark:text-[rgb(22,1,1)] mb-2">
+                          {job.title}
+                        </h3>
+                        <p className="text-black dark:text-[rgb(6,12,22)] text-lg font-medium">{job.company}</p>
+                        <p className="text-black dark:text-gray-500 text-sm mt-1 font-medium">{job.location} • {job.period}</p>
+                      </div>
+                    </div>
+                    <div className="space-y-3">
+                      {job.description.slice(0, 2).map((point, i) => (
+                        <p key={i} className="text-black dark:text-[rgb(12,30,56)] leading-relaxed">{point}</p>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
           ))}
         </div>

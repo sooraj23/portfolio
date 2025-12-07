@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Education from './components/Education';
 import Languages from './components/Languages';
-import Activities from './components/Activities';
 import Footer from './components/Footer';
 import Bet365 from './pages/Bet365';
 import Kindertons from './pages/Kindertons';
@@ -35,44 +35,44 @@ const App: React.FC = () => {
   };
 
   const HomePage = () => (
-    <>
-      <div className="fixed top-4 right-4 flex space-x-2 z-50">
-        <a
-          href="https://github.com/sooraj23"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-2 bg-gray-200 dark:bg-gray-700 rounded-full shadow-lg text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-          title="GitHub"
-          aria-label="GitHub"
-        >
-          🐙
-        </a>
-        <button
-          onClick={toggleDarkMode}
-          className="p-2 bg-gray-200 dark:bg-gray-700 rounded-full shadow-lg"
-          title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-          aria-label="Toggle dark mode"
-        >
-          {darkMode ? '☀️' : '🌙'}
-        </button>
+    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white">
+      <Sidebar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+      <div className="lg:ml-64">
+        <Hero />
+        <section id="about" className="py-20 px-8 bg-gray-100/50 dark:bg-gray-900/30">
+          <div className="max-w-6xl mx-auto">
+            <About />
+          </div>
+        </section>
+        <section id="work" className="py-20 px-8">
+          <div className="max-w-6xl mx-auto">
+            <Experience />
+          </div>
+        </section>
+        <section id="projects" className="py-20 px-8 bg-gray-100/30 dark:bg-gray-900/50">
+          <div className="max-w-6xl mx-auto">
+            <Projects />
+          </div>
+        </section>
+        <section id="experience" className="py-20 px-8 bg-gray-100/50 dark:bg-gray-900/30">
+          <div className="max-w-6xl mx-auto">
+            <Skills />
+          </div>
+        </section>
+        <section id="contact" className="py-20 px-8 bg-gray-100/30 dark:bg-gray-900/50">
+          <div className="max-w-6xl mx-auto">
+            <Education />
+            <div className="mt-16">
+              <Languages />
+            </div>
+            {/* <div className="mt-16">
+              <Activities />
+            </div> */}
+          </div>
+        </section>
+        <Footer />
       </div>
-      <button
-        onClick={scrollToTop}
-        className="fixed bottom-4 right-4 p-3 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg z-50 transition-colors"
-        aria-label="Go to top"
-      >
-        ↑
-      </button>
-      <Header />
-      <About />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Education />
-      <Languages />
-      {/* <Activities /> */}
-      <Footer />
-    </>
+    </div>
   );
 
   return (
