@@ -32,9 +32,6 @@ const App: React.FC = () => {
     setDarkMode(!darkMode);
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   const HomePage = () => (
     <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white">

@@ -1,9 +1,6 @@
 import React from 'react';
 
 const Footer: React.FC = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   return (
     <footer className="bg-gray-800 dark:bg-gray-900 text-white py-8">
