@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import Sidebar from './components/Sidebar';
+import { motion, useScroll, useSpring } from 'framer-motion';
+import { ThemeProvider } from './context/ThemeContext';
+import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
@@ -17,119 +18,63 @@ import Gadgeon from './pages/Gadgeon';
 import Eteam from './pages/Eteam';
 import Cmots from './pages/Cmots';
 
-const App: React.FC = () => {
-  const [darkMode, setDarkMode] = useState(true);
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
-
-
-  const HomePage = () => (
-    <div className="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white">
-      <Sidebar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      <div className="lg:ml-64">
-        <motion.div
-          whileInView="visible"
-          variants={sectionVariants}
-          initial="hidden"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <Hero />
-        </motion.div>
-        <motion.section
-          id="about"
-          className="py-20 px-8 bg-gray-100/50 dark:bg-gray-900/30"
-          whileInView="visible"
-          variants={sectionVariants}
-          initial="hidden"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <div className="max-w-6xl mx-auto">
-            <About />
-          </div>
-        </motion.section>
-        <motion.section
-          id="work"
-          className="py-20 px-8"
-          whileInView="visible"
-          variants={sectionVariants}
-          initial="hidden"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <div className="max-w-6xl mx-auto">
-            <Experience />
-          </div>
-        </motion.section>
-        <motion.section
-          id="projects"
-          className="py-20 px-8 bg-gray-100/30 dark:bg-gray-900/50"
-          whileInView="visible"
-          variants={sectionVariants}
-          initial="hidden"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <div className="max-w-6xl mx-auto">
-            <Projects />
-          </div>
-        </motion.section>
-        <motion.section
-          id="experience"
-          className="py-20 px-8 bg-gray-100/50 dark:bg-gray-900/30"
-          whileInView="visible"
-          variants={sectionVariants}
-          initial="hidden"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <div className="max-w-6xl mx-auto">
-            <Skills />
-          </div>
-        </motion.section>
-        <motion.section
-          id="contact"
-          className="py-20 px-8 bg-gray-100/30 dark:bg-gray-900/50"
-          whileInView="visible"
-          variants={sectionVariants}
-          initial="hidden"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          <div className="max-w-6xl mx-auto">
-            <Education />
-            <div className="mt-16">
-              <Languages />
-            </div>
-            {/* <div className="mt-16">
-              <Activities />
-            </div> */}
-          </div>
-        </motion.section>
-        <Footer />
-      </div>
-    </div>
-  );
-
+const ScrollProgress: React.FC = () => {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 30, restDelta: 0.001 });
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/bet365" element={<Bet365 />} />
-          <Route path="/kindertons" element={<Kindertons />} />
-          <Route path="/gadgeon" element={<Gadgeon />} />
-          <Route path="/eteam" element={<Eteam />} />
-          <Route path="/cmots" element={<Cmots />} />
-        </Routes>
-      </div>
-    </Router>
+    <motion.div
+      className="fixed top-16 left-0 right-0 h-[2px] bg-gradient-to-r from-indigo-500 via-violet-500 to-pink-500 z-[60] origin-left"
+      style={{ scaleX }}
+    />
   );
 };
+
+const HomePage: React.FC = () => (
+  <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white">
+    <ScrollProgress />
+    <Navbar />
+    <div className="pt-16">
+      <Hero />
+
+      <motion.section id="about" whileInView="visible" variants={sectionVariants} initial="hidden" viewport={{ once: true, amount: 0.1 }}>
+        <About />
+      </motion.section>
+
+      <motion.section id="work" whileInView="visible" variants={sectionVariants} initial="hidden" viewport={{ once: true, amount: 0.05 }}>
+        <Experience />
+      </motion.section>
+
+      <motion.section id="projects" whileInView="visible" variants={sectionVariants} initial="hidden" viewport={{ once: true, amount: 0.05 }}>
+        <Projects />
+      </motion.section>
+
+      <motion.section id="experience" whileInView="visible" variants={sectionVariants} initial="hidden" viewport={{ once: true, amount: 0.1 }}>
+        <Skills />
+      </motion.section>
+
+      <motion.section id="contact" whileInView="visible" variants={sectionVariants} initial="hidden" viewport={{ once: true, amount: 0.05 }}>
+        <Education />
+        <Languages />
+      </motion.section>
+
+      <Footer />
+    </div>
+  </div>
+);
+
+const App: React.FC = () => (
+  <ThemeProvider>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/bet365" element={<Bet365 />} />
+        <Route path="/kindertons" element={<Kindertons />} />
+        <Route path="/gadgeon" element={<Gadgeon />} />
+        <Route path="/eteam" element={<Eteam />} />
+        <Route path="/cmots" element={<Cmots />} />
+      </Routes>
+    </Router>
+  </ThemeProvider>
+);
 
 export default App;
